@@ -1,0 +1,21 @@
+{
+  "name": "1money-report",
+  "version": "1.0.0",
+  "description": "A minimal Electron application to create report from 1Money app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefanopassador/1Money-Report.git"
+  },
+  "keywords": [
+    "Electron"
+  ],
+  "author": "stefanopassador",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^4.1.3"
+  }
+}
