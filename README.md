@@ -32,6 +32,9 @@ yarn
 ### Development Scripts
 
 ```bash
+# install dependencies
+yarn
+
 # run application in development mode
 yarn dev
 
