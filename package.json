@@ -48,7 +48,9 @@
   },
   "dependencies": {
     "d3": "^5.9.2",
-    "dataframe-js": "^1.4.1",
+    "data-forge": "^1.6.9",
+    "data-forge-fs": "^0.0.6",
+    "data-forge-plot": "^0.3.0",
     "electron-compile": "^6.4.4",
     "electron-squirrel-startup": "^1.0.0"
   },

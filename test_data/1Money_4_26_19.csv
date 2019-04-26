@@ -152,3 +152,9 @@
 "1/12/19","Expense","Card","Gifts","5.99","EUR","5.99","EUR","","Regalo Arianna Gimmelli per aiuto appartamento"
 "1/12/19","Expense","Card","Gifts","4.89","EUR","4.89","EUR","","Vino per Alessandro Coppola per aiuto appartamento"
 "1/12/19","Expense","Card","Groceries","88.11","EUR","88.11","EUR","","Esselunga San Fruttuoso"
+,
+,
+"NAME","BALANCE","CURRENCY"
+"Card","-618.97","EUR"
+"Cash","0","EUR"
+,

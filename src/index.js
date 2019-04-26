@@ -23,7 +23,7 @@ const createWindow = () => {
 
 	// Open the DevTools.
 	mainWindow.webContents.openDevTools();
-	
+
 	// Emitted when the window is closed.
 	mainWindow.on('closed', () => {
 		// Dereference the window object, usually you would store windows
@@ -61,7 +61,10 @@ app.on('activate', () => {
 ipcMain.on('openFile', (event, arg) => {
 	const {dialog} = require('electron')
 	const fs = require('fs')
-	var DataFrame = require('dataframe-js').DataFrame;
+	var dataForge = require('data-forge');
+	var dataForgeFS =  require('data-forge-fs');
+	var dataForgePlot = require('data-forge-plot');
+
 
 	ipcMain.on('click-button', (event, arg) => {
 		if (arg == 'true') {
@@ -69,16 +72,25 @@ ipcMain.on('openFile', (event, arg) => {
 				if (fileNames == undefined) {
 					console.log("No file selected");
 				} else {
-					csvPath = fileNames[0]
-					console.log(csvPath)
+					csvPath = fileNames[0];
+					console.log(csvPath);
 
-					try {
-						DataFrame.fromCSV(csvPath).then(df => {
-							df.show(5)
-						})
-					} catch (err) {
-						console.log(err)
-					}
+					// WITH DATA-forge
+					var df = dataForgeFS.readFileSync(csvPath).parseCSV();
+
+					// rename column
+					const renamedDf = df.renameSeries({ "\"DATE\"": "DATE" });
+
+					// split dataframe into history and summary
+					const history = renamedDf.takeUntil(row => row.DATE === "" && row.TYPE === "");
+					const summaryTmp = renamedDf.after(history.toArray().length)
+					const summary = dataForge.fromCSV(summaryTmp.toCSV({ header: false }))
+							.dropSeries([".1", ".2", ".3", ".4", ".5", ".6", ".7"]);
+
+					console.log("HISTORY")
+					console.log(history.toString())
+					console.log("SUMMARY")
+					console.log(summary.toString())
 				}
 			})
 		}
